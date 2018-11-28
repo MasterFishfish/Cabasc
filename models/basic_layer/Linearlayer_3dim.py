@@ -43,7 +43,8 @@ class Linearlayer_3dim():
         output_edims = tf.shape(self.weights)[1]
         batch_weights = tf.reshape(
             tensor=tf.tile(self.weights, [batch_size, 1]),
-            shape=[batch_size, input_edims, output_edims])
+            shape=[batch_size, input_edims, output_edims]
+        )
         output = tf.matmul(inputs, batch_weights)
         return output
 
