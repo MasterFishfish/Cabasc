@@ -30,7 +30,8 @@ if __name__ == '__main__':
     # batch_size = 2, edims = 3
     bv_shaped = tf.reshape(bv, shape=[-1, 3, 1])
     # bv = tf.Variable(initial_value=b)
+    g = tf.Variable(tf.zeros([1]), trainable=True)
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
         print(sess.run(a))
-        print(sess.run(bv_shaped))
+        print(sess.run(g))

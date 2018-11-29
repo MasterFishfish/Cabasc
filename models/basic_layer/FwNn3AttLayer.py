@@ -6,6 +6,7 @@ from until.Randomer import Randomer
 from until.Activer import activer
 from until.SoftMask import normalizer
 
+# 与另外一个文件中的FwNnAttLayer一样 是基于perceptron 相似度计算得到的attention
 class FwNnAttLayer():
     def __init__(self,
                  edim,
@@ -148,6 +149,8 @@ class FwNnAttLayer():
         return alpha
 
     def forward(self, context, aspect, output, ctx_bitmap, alpha_adj=None):
+        # 该函数返回的是经过alpha计算之后的stentence representation
+        # 即对应着文章中的 V = Ma
         mem_size = tf.shape(context)[1]
         ctx = context
         asp = aspect
@@ -193,7 +196,7 @@ class FwNnAttLayer():
         return sentence_embedding, alpha
 
     def forward_wot_sum(self, context, aspect, output, ctx_bitmap, alpha_adj=None):
-        # 该函数返回的是根据attention计算出的sentence_embedding
+        # 该函数返回的是根据attention调整之后的sentence_embedding
         # mem_size 即context的steps
         mem_size = tf.shape(context)[1]
         ctx = context

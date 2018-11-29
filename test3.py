@@ -8,9 +8,12 @@ if __name__ == '__main__':
     bv = tf.Variable(initial_value=b, name="bv")
     cv = tf.add(av, bv)
     ev = bv
+    eini = [1, 2, 3, 3]
+    ev = ev.assign(value=eini)
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
         print(sess.run(cv))
         print(sess.run(tf.tile(av, [2, 1])))
         print(sess.run(av))
         print(sess.run(ev))
+        print(sess.run(bv))
